@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<form name="fm1">
+	<h3>会員一覧</h3>
+	</form>
+	<fieldset style="width:40em;height:2.7em">
+	<legend>検索条件</legend>
+	<form name="fm2">
+	　会員ID　　　<input type="text" name="members" style="width:8em;height:1em"/>
+	　　　　　氏名　　　<input type="text" name="name" style="width:8em;height:1em"/>
+	　　　<input type="submit" value="絞り込む" onclick="doSubmit('focus')"/>
+	</form>
+	</fieldset><br>
+
+	<div id="message">
+
+	<c:out value="${oneTimeMessage}"></c:out></div>
+
+
+	<form name="fm" >
+	<table border="1">
+	<tr>
+	<th>選択</th><th>会員ID</th><th>氏名</th><th>電話番号</th><th>メールアドレス</th>
+	</tr>
+	<c:forEach items="${ MenbersList }" var="members">
+	<tr>
+	<td><input type="radio" name="line_id" value="${ members.members_id }"></td>
+	<td><c:out value="${members.members_name }" /></td>
+	<td><c:out value="${members.departure_stop_id }" /></td>
+	<td><c:out value="${members.member_tel }" /></td>
+	<td><c:out value="${members.member_address }" /></td>
+	</tr>
+	</c:forEach>
+	</table>
+	<br>
+	<input type="button" value="予約状況" onclick="doSubmit('available')"/>
+
+	</form>
+</body>
+</html>

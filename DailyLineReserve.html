@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form name="fm1">
+	<h3>日別路線予約状況</h3>
+	</form>
+	<fieldset style="width:20em;height:2.4em">
+	<legend>日付指定</legend>
+	<form name="fm2">
+	　日付　　<input type="text" name="members" style="width:8em;height:1em"/>
+	　　　<input type="submit" value="再表示" onclick="doSubmit('focus')"/>
+	</form>
+	</fieldset><br>
+
+	<div id="message">
+
+	<c:out value="${oneTimeMessage}"></c:out></div>
+
+
+	<form name="fm" >
+	<table border="1" style="float:left;">
+	<c:forEach items="${ MenbersList }" var="line">
+	<tr><td>日付</td><td><fmt:formatDate value="${line.start_date }" pattern="yyyy年MM月dd日"/></td></tr>
+	<tr><td>出発</td><td><c:out value="${line.departure_stop_id }" /><c:out value="("/><c:out value="${line.start_time }" /><c:out value=")"/></td></tr>
+	<tr><td>到着</td><td><c:out value="${line.arrival_stop_id }" /><c:out value="("/><c:out value="${line.end_time }" /><c:out value=")"/></td></tr>
+	<tr>
+	<td>1席料金</td><td><fmt:formatNumber value="${line.fee }" pattern="\#,###"/></td>
+	<table>
+	<tr><td>　</td></tr>
+	<tr><td>　</td></tr>
+	<tr><td>　</td></tr>
+	<tr><td>　</td></tr>
+	<tr><td>　　　<input type="submit" value="戻る" onclick="doSubmit('a')"/></td></tr>
+	</table>
+	</tr>
+	</c:forEach>
+	</table>
+
+	<h4>予約状況　　　　　　　　　空席一覧</h4>
+	<table border="1" style="float:left;">
+	<tr>
+	<th>座席番号</th><th>会員ID</th>
+	</tr>
+	<c:forEach items="${ SeatList }" var="seat">
+	<tr>
+	<td><c:out value="${seat.seat_no }" /></td>
+	<td><c:out value="${seat.members_id }" /></td>
+	</tr>
+	</c:forEach>
+	</table>
+
+	<table style="float:left;">
+	<tr><td>　</td></tr>
+	<tr><td>　</td></tr>
+	<tr><td>　</td></tr>
+	<tr><td>　</td></tr>
+	<tr><td>　</td></tr>
+	</table>
+	<table style="float:left;">
+	<tr><td>　</td></tr>
+	<tr><td>　</td></tr>
+	<tr><td>　</td></tr>
+	<tr><td>　</td></tr>
+	<tr><td>　</td></tr>
+	</table>
+
+	<table border="1">
+	<tr>
+	<th>座席番号</th>
+	</tr>
+	<c:forEach items="${ SeatList }" var="seat">
+	<tr>
+	<td><c:out value="${seat.seat_no }" /></td>
+	</tr>
+	</c:forEach>
+	</table>
+
+	<br>
+
+
+	</form>
+</body>
+</html>
